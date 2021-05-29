@@ -8,5 +8,6 @@ data class Stop(
   val code: Int,
   val name: String,
   val latitude: Double,
-  val longitude: Double
+  val longitude: Double,
+  val isFavourite: Boolean
 ) : Favourite(id, FavouriteType.STOP)

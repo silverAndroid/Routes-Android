@@ -6,7 +6,7 @@ import androidx.paging.PagingState
 class StopsPagingSource(private val stopsDao: StopsDao, private val query: String?) :
   PagingSource<String, Stop>() {
   override fun getRefreshKey(state: PagingState<String, Stop>): String? {
-    return null
+    return state.firstItemOrNull()?.id
   }
 
   override suspend fun load(params: LoadParams<String>): LoadResult<String, Stop> {

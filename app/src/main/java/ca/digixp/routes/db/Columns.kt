@@ -14,6 +14,8 @@ const val COLUMN_ROUTE_ID = "route_id"
 const val COLUMN_ROUTE_SHORT_NAME = "route_short_name"
 const val TABLE_VRT_ROUTE_NAME = "routes_vrt"
 
+const val DATABASE_USER = "userDB"
+
 const val COLUMN_FAVOURITE_TYPE_ID = "id"
 const val COLUMN_FAVOURITE_TYPE_NAME = "name"
 const val TABLE_FAVOURITE_TYPE_NAME = "favourite_types"

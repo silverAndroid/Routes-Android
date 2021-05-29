@@ -126,7 +126,7 @@ class TransitDB @Inject constructor(
     userDB.readableDatabase.query(TABLE_FAVOURITE_TYPE_NAME, limit = 1).close()
 
     val userDbPath = context.getDatabasePath("db.sqlite").absolutePath
-    this.database?.execSQL("ATTACH DATABASE '$userDbPath' AS userDb;")
+    this.database?.execSQL("ATTACH DATABASE '$userDbPath' AS $DATABASE_USER;")
   }
 
   private fun initializeDatabase() {
