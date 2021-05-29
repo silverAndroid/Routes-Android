@@ -7,10 +7,14 @@ import androidx.core.content.contentValuesOf
 import androidx.core.database.sqlite.transaction
 import ca.digixp.routes.favourites.FavouriteType
 import ca.digixp.routes.util.insert
+import dagger.hilt.android.qualifiers.ApplicationContext
+import java.util.*
+import javax.inject.Inject
 
 private const val VERSION = 1
 
-class UserDB(context: Context) : SQLiteOpenHelper(context, "db.sqlite", null, VERSION) {
+class UserDB @Inject constructor(@ApplicationContext context: Context) :
+  SQLiteOpenHelper(context, "db.sqlite", null, VERSION) {
   override fun onCreate(db: SQLiteDatabase) {
     db.transaction {
       execSQL(favouriteTypesCreationSql)
@@ -21,7 +25,7 @@ class UserDB(context: Context) : SQLiteOpenHelper(context, "db.sqlite", null, VE
           TABLE_FAVOURITE_TYPE_NAME,
           contentValuesOf(
             COLUMN_FAVOURITE_TYPE_ID to it.ordinal,
-            COLUMN_FAVOURITE_TYPE_NAME to it.name.toLowerCase()
+            COLUMN_FAVOURITE_TYPE_NAME to it.name.toLowerCase(Locale.ROOT)
           )
         )
       }

@@ -7,13 +7,15 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import ca.digixp.routes.util.SqliteDatabaseOpenFlag
 import ca.digixp.routes.util.query
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.FileOutputStream
+import javax.inject.Inject
 
 
 private const val VERSION = 1
 
-class TransitDB(
-  private val context: Context,
+class TransitDB @Inject constructor(
+  @ApplicationContext private val context: Context,
   private val userDB: UserDB,
   city: String
 ) :
@@ -89,7 +91,7 @@ class TransitDB(
     try {
       return writableDatabase
     } catch (e: Exception) {
-      Log.e("TransitDB", "Couldn't open $dbName for writing (will try read-only):", e);
+      Log.e("TransitDB", "Couldn't open $dbName for writing (will try read-only):", e)
     }
 
     var database: SQLiteDatabase? = null
