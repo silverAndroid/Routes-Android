@@ -18,4 +18,12 @@ class FavouritesDaoImpl @Inject constructor(private val userDB: UserDB) : Favour
       )
     )
   }
+
+  override fun removeFavourite(favourite: Favourite) {
+    userDB.readableDatabase.delete(
+      TABLE_FAVOURITE_NAME,
+      "$COLUMN_FAVOURITE_ID = ? AND $COLUMN_FAVOURITE_TYPE = ?",
+      arrayOf(favourite.id, favourite.type.ordinal.toString())
+    )
+  }
 }

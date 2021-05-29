@@ -29,7 +29,11 @@ fun StopsList(stopsViewModel: StopsViewModel) {
       } else {
         ListItem(trailing = {
           IconButton(onClick = {
-            stopsViewModel.addAsFavourite(stop)
+            if (stop.isFavourite) {
+              stopsViewModel.removeAsFavourite(stop)
+            } else {
+              stopsViewModel.addAsFavourite(stop)
+            }
           }) {
             if (stop.isFavourite) {
               Icon(Icons.Outlined.Star, "Add to favourites", tint = Color.Red)

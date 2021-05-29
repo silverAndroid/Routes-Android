@@ -37,4 +37,11 @@ class StopsViewModel @Inject constructor(
       stopsPagingSource.invalidate()
     }
   }
+
+  fun removeAsFavourite(stop: Stop) {
+    viewModelScope.launch {
+      favouritesDao.removeFavourite(stop)
+      stopsPagingSource.invalidate()
+    }
+  }
 }
