@@ -3,7 +3,8 @@ buildscript {
     ext {
         compose_version = '1.0.0-beta07'
         hilt_version = '2.35.1'
-        sqlite_version = "2.1.0"
+        paging_version = '3.0.0'
+        sqlite_version = '2.1.0'
     }
     repositories {
         google()

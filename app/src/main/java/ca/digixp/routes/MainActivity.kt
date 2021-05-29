@@ -9,12 +9,10 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import ca.digixp.routes.stops.StopsDao
 import ca.digixp.routes.stops.StopsViewModel
 import ca.digixp.routes.ui.StopsList
 import ca.digixp.routes.ui.theme.RoutesTheme
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

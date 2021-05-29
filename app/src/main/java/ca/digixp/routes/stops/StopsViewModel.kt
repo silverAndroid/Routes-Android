@@ -1,22 +1,22 @@
 package ca.digixp.routes.stops
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class StopsViewModel @Inject constructor(private val stopsRepository: StopsRepository) :
-  ViewModel() {
-  private val _stops = MutableLiveData<List<Stop>>()
-  val stops: LiveData<List<Stop>> = _stops
-
-  fun fetchStops() {
-    viewModelScope.launch {
-      _stops.postValue(stopsRepository.getStopsAsync().await())
-    }
+class StopsViewModel @Inject constructor(private val stopsDao: StopsDao) : ViewModel() {
+  fun fetchStops(): Flow<PagingData<Stop>> {
+    return Pager(
+      PagingConfig(20)
+    ) { StopsPagingSource(stopsDao, null) }
+      .flow
+      .cachedIn(viewModelScope)
   }
 }
